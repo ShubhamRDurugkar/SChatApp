@@ -27,13 +27,13 @@ public class UpdateForumTest {
 
 	@Test
 	public void updateForumTest() throws ParseException {
-		// SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
 		// forum =new Forum();
 		forum = forumDao.getForum(21);
 		forum.setForumName("99Dishes");
 		forum.setForumContent("Helloo");
 		// forum.setStatus("AP");
-		// forum.setCreateDate(textFormat.parse("2017-06-18"));
+		// forum.setCreateDate(new Date());
 		// forum.setUsername("ShubhamRDurugkar");
 		assertEquals("Successfully updated forum into the table", true, forumDao.updateForum(forum));
 		System.out.println("<-----------Successfully updated forum-------->");

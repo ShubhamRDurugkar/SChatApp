@@ -26,13 +26,13 @@ public class UpdateJobTest {
 	}
 	@Test
 	public void updateJobTest() throws ParseException {
-	//	SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
+	
 	    //job =new Job();
 	    job=jobDao.getJob(3);
 		job.setJobTitle("AssociateER");
 		job.setJobDescription("Associate engineer for core java advance java");
 //		job.setStatus("AP");
-//		job.setCreateDate(textFormat.parse("2017-06-18"));
+//		job.setCreateDate(new Date());
 //		job.setUsername("ShubhamRDurugkar");
 		assertEquals("Successfully updated job into the table", true, jobDao.updateJob(job));
 		System.out.println("<-----------Successfully updated job-------->");

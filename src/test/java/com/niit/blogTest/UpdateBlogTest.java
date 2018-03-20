@@ -25,13 +25,13 @@ public class UpdateBlogTest {
 	}
 	@Test
 	public void updateBlogTest() throws ParseException {
-	//	SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
+	
 	    //blog =new Blog();
 	    blog=blogDao.getBlog(15);
 		blog.setBlogName("99Dishes");
 		blog.setBlogContent("Helloo");
 //		blog.setStatus("AP");
-//		blog.setCreateDate(textFormat.parse("2017-06-18"));
+//		blog.setCreateDate(new Date());
 //		blog.setUsername("ShubhamRDurugkar");
 		assertEquals("Successfully updated blog into the table", true, blogDao.updateBlog(blog));
 		System.out.println("<-----------Successfully updated blog-------->");

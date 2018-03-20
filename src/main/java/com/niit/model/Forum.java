@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,7 @@ public class Forum {
 	@Column(name = "forumContent")
 	private String forumContent;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "createdDate")
 	private Date createdDate;
 	

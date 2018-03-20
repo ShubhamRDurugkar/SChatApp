@@ -24,7 +24,7 @@ public class DeleteBlogTest {
 
 	@Test
 	public void testDeleteBlog() {
-		blog = blogDao.getBlog(17);
+		blog = blogDao.getBlog(1);
 		assertEquals("Successfully deleted blog details from the table", true, blogDao.deleteBlog(blog));
 		System.out.println("<-----------Successfully deleted blog-------->");
 	}

@@ -3,7 +3,7 @@ package com.niit.forumTest;
 import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,12 +26,12 @@ public class InsertForumTest {
 	}
 	@Test
 	public void insertForumTest() throws ParseException {
-		SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
 	    forum =new Forum();
 		forum.setForumName("Shubham");
 		forum.setUsername("shubhamRD");
 		forum.setForumContent("Food Forum");
-		forum.setCreatedDate(textFormat.parse("2017-06-18"));
+		forum.setCreatedDate(new Date());
 		//forum.setStatus("NA");
 		assertEquals("Successfully added Forum into the table", true, forumDao.addForum(forum));
 		

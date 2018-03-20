@@ -16,9 +16,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.dao.BlogDAOImpl;
 import com.niit.dao.ForumDAOImpl;
 import com.niit.dao.JobDAOImpl;
+import com.niit.dao.UserDAOImpl;
 import com.niit.model.Blog;
 import com.niit.model.Forum;
 import com.niit.model.Job;
+import com.niit.model.User;
 
 @Configuration
 @ComponentScan("com.niit")
@@ -41,7 +43,7 @@ public class DBConfig {
 		Properties hibernateProp = new Properties();
 
 		hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-		hibernateProp.put("hibernate.hbm2ddl.auto", "update");
+		hibernateProp.put("hibernate.hbm2ddl.auto", "create");
 		hibernateProp.put("hibernate.show_sql", "true");
 		LocalSessionFactoryBuilder sessionFactoryBuiler = new LocalSessionFactoryBuilder(getDataSource());
 		sessionFactoryBuiler.addProperties(hibernateProp);
@@ -52,6 +54,8 @@ public class DBConfig {
 		System.out.println("<--------------Forum Class Added-------------->");
 		sessionFactoryBuiler.addAnnotatedClass(Job.class);
 		System.out.println("<--------------Job Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(User.class);
+		System.out.println("<--------------User Class Added-------------->");
 		SessionFactory sessionFactory = sessionFactoryBuiler.buildSessionFactory();
 		System.out.println("<---------Session object created--------->");
 		return sessionFactory;
@@ -72,6 +76,12 @@ public class DBConfig {
 	public JobDAOImpl getJobgDAO(SessionFactory sf) {
 		return new JobDAOImpl(sf);
 	}
+	
+	@Bean(name = "userDAOImpl")
+	public UserDAOImpl getUserDAO(SessionFactory sf) {
+		return new UserDAOImpl(sf);
+	}
+	
 	@Bean
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);

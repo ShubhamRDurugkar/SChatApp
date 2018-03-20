@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,7 @@ public class Blog {
 	@Column(name = "blogContent")
 	private String blogContent;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name = "createDate")
 	private Date createDate;
 	

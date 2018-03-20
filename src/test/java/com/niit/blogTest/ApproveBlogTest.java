@@ -24,7 +24,7 @@ public class ApproveBlogTest {
 
 	@Test
 	public void testApproveBlog() {
-		blog = blogDao.getBlog(19);
+		blog = blogDao.getBlog(18);
 		String sts = blog.getStatus();
 		if (sts.equals("NA")) {
 			assertEquals("Successfully approved blog int the table", true, blogDao.approveBlog(blog));

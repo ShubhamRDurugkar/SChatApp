@@ -3,7 +3,7 @@ package com.niit.blogTest;
 import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,12 +27,12 @@ public class InsertBlogTest {
 	}
 	@Test
 	public void insertBlogTest() throws ParseException {
-		SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
 	    blog =new Blog();
 		blog.setBlogName("Shubham");
 		blog.setUsername("shubhamRD");
 		blog.setBlogContent("Food blog");
-		blog.setCreateDate(textFormat.parse("2017-06-18"));
+		blog.setCreateDate(new Date());
 		blog.setStatus("NA");
 		assertEquals("Successfully added blog into the table", true, blogDao.addBlog(blog));
 		
