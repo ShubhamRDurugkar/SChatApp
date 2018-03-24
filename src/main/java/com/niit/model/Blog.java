@@ -9,20 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 @Entity
-@Table(name="Blog")
-
+@Table
+@SequenceGenerator(name = "blogidseq", sequenceName="blog_id_seq", allocationSize = 1)
 public class Blog {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator", sequenceName="blog_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blogidseq")
 	@Column(name = "blogId")
 	private int blogId;
 	
@@ -32,7 +31,7 @@ public class Blog {
 	@Column(name = "blogContent")
 	private String blogContent;
 	
-	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
 	@Column(name = "createDate")
 	private Date createDate;
 	
@@ -41,6 +40,17 @@ public class Blog {
 	
 	@Column(name = "status")
 	private String status;
+
+	@Column(name="likes")
+	private int likes;
+	
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
 
 	public int getBlogId() {
 		return blogId;

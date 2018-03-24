@@ -1,4 +1,4 @@
-package com.niit.dao;
+package com.niit.daoimpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,26 +11,25 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.model.Job;
-
+import com.niit.dao.ForumDAO;
+import com.niit.model.Forum;
 @Service
-@Repository("jobDAO")
-public class JobDAOImpl implements JobDAO{
-
+@Repository("forumDAO")
+public class ForumDAOImpl implements ForumDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 
 
 	   @Autowired
-		public JobDAOImpl(SessionFactory sf) {
+		public ForumDAOImpl(SessionFactory sf) {
 			super();
 			this.sessionFactory = sf;
 		}
 
 	@Transactional
-	public boolean addJob(Job job) {
+	public boolean addForum(Forum forum) {
 		try {
-			sessionFactory.getCurrentSession().save (job);
+			sessionFactory.getCurrentSession().saveOrUpdate(forum);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -38,9 +37,9 @@ public class JobDAOImpl implements JobDAO{
 	}
 
 	@Transactional
-	public boolean deleteJob(Job job) {
+	public boolean deleteForum(Forum forum) {
 		try {
-			sessionFactory.getCurrentSession().delete(job);
+			sessionFactory.getCurrentSession().delete(forum);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -48,9 +47,9 @@ public class JobDAOImpl implements JobDAO{
 	}
 
 	@Transactional
-	public boolean updateJob(Job job) {
+	public boolean updateForum(Forum forum) {
 		try {
-			sessionFactory.getCurrentSession().update(job);
+			sessionFactory.getCurrentSession().update(forum);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -58,30 +57,30 @@ public class JobDAOImpl implements JobDAO{
 	}
 
 	@Transactional
-	public Job getJob(int jobId) {
+	public Forum getForum(int forumId) {
 		try {
 			Session session = sessionFactory.openSession();
-			Job job = session.get(Job.class, jobId);
-			return job;
+			Forum forum = session.get(Forum.class, forumId);
+			return forum;
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
 	
-
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<Job> listJob(int jobId) {
+	public List<Forum> listForum(String username) {
 		try {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
-			List<Job> jobList = new ArrayList<Job>();
-			Query query = session.createQuery("FROM Job where jobId=:jobId").setInteger("jobId",jobId);
-			jobList = query.list();
-			return jobList;
+			List<Forum> forumList = new ArrayList<Forum>();
+			Query query = session.createQuery("FROM Forum where username=:username").setString("username",username);
+			forumList = query.list();
+			return forumList;
 		} catch (Exception e) {
 			return null;
 		}
 	}
+
 }

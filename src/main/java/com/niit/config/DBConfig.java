@@ -13,11 +13,12 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.dao.BlogDAOImpl;
-import com.niit.dao.ForumDAOImpl;
-import com.niit.dao.JobDAOImpl;
-import com.niit.dao.UserDAOImpl;
+import com.niit.daoimpl.BlogDAOImpl;
+import com.niit.daoimpl.ForumDAOImpl;
+import com.niit.daoimpl.JobDAOImpl;
+import com.niit.daoimpl.UserDAOImpl;
 import com.niit.model.Blog;
+import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.Job;
 import com.niit.model.User;
@@ -43,13 +44,15 @@ public class DBConfig {
 		Properties hibernateProp = new Properties();
 
 		hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-		hibernateProp.put("hibernate.hbm2ddl.auto", "create");
+		hibernateProp.put("hibernate.hbm2ddl.auto", "update");
 		hibernateProp.put("hibernate.show_sql", "true");
 		LocalSessionFactoryBuilder sessionFactoryBuiler = new LocalSessionFactoryBuilder(getDataSource());
 		sessionFactoryBuiler.addProperties(hibernateProp);
 		System.out.println("<-----------Hibernate properties added---------------->");
 		sessionFactoryBuiler.addAnnotatedClass(Blog.class);
 		System.out.println("<--------------Blog Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(BlogComment.class);
+		System.out.println("<--------------BlogComment Class Added-------------->");
 		sessionFactoryBuiler.addAnnotatedClass(Forum.class);
 		System.out.println("<--------------Forum Class Added-------------->");
 		sessionFactoryBuiler.addAnnotatedClass(Job.class);
