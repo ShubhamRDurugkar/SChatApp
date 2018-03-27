@@ -12,26 +12,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.dao.JobDAO;
+import com.niit.model.ApplyJob;
 import com.niit.model.Job;
 
 @Service
 @Repository("jobDAO")
-public class JobDAOImpl implements JobDAO{
+public class JobDAOImpl implements JobDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-
-	   @Autowired
-		public JobDAOImpl(SessionFactory sf) {
-			super();
-			this.sessionFactory = sf;
-		}
+	@Autowired
+	public JobDAOImpl(SessionFactory sf) {
+		super();
+		this.sessionFactory = sf;
+	}
 
 	@Transactional
 	public boolean addJob(Job job) {
 		try {
-			sessionFactory.getCurrentSession().save (job);
+			sessionFactory.getCurrentSession().save(job);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -69,18 +69,43 @@ public class JobDAOImpl implements JobDAO{
 		}
 	}
 
-	
-
 	@SuppressWarnings("unchecked")
-	@Transactional
-	public List<Job> listJob(int jobId) {
+	@Override
+	public List<Job> listAllJobs() {
 		try {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			List<Job> jobList = new ArrayList<Job>();
-			Query query = session.createQuery("FROM Job where jobId=:jobId").setInteger("jobId",jobId);
+			Query query = session.createQuery("FROM Job");
 			jobList = query.list();
 			return jobList;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Transactional
+	@Override
+	public boolean applyJob(ApplyJob applyJob) {
+		try {
+			sessionFactory.getCurrentSession().save(applyJob);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Transactional
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ApplyJob> getAllAppliedJobDetails() {
+		try {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			List<ApplyJob> appliedjobList = new ArrayList<ApplyJob>();
+			Query query = session.createQuery("FROM ApplyJob");
+			appliedjobList = query.list();
+			return appliedjobList;
 		} catch (Exception e) {
 			return null;
 		}

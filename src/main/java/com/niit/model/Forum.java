@@ -9,38 +9,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 @Entity
-@Table(name="Forum")
+@Table
+@SequenceGenerator(name = "forumidseq", sequenceName = "forum_id_seq", allocationSize = 1)
 public class Forum {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator", sequenceName="forum_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "forumidseq")
+
 	@Column(name = "forumId")
 	private int forumId;
-	
+
 	@Column(name = "forumName")
 	private String forumName;
-	
+
 	@Column(name = "forumContent")
 	private String forumContent;
-	
-	@Temporal(TemporalType.DATE)
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
 	@Column(name = "createdDate")
 	private Date createdDate;
-	
+
 	@Column(name = "username")
 	private String username;
-	
-	/*@Column(name = "status")
+
+	@Column(name = "status")
 	private String status;
-*/
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public int getForumId() {
 		return forumId;
 	}
@@ -81,11 +90,4 @@ public class Forum {
 		this.username = username;
 	}
 
-	/*public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}*/
 }

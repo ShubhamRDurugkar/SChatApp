@@ -17,9 +17,11 @@ import com.niit.daoimpl.BlogDAOImpl;
 import com.niit.daoimpl.ForumDAOImpl;
 import com.niit.daoimpl.JobDAOImpl;
 import com.niit.daoimpl.UserDAOImpl;
+import com.niit.model.ApplyJob;
 import com.niit.model.Blog;
 import com.niit.model.BlogComment;
 import com.niit.model.Forum;
+import com.niit.model.ForumComment;
 import com.niit.model.Job;
 import com.niit.model.User;
 
@@ -55,8 +57,14 @@ public class DBConfig {
 		System.out.println("<--------------BlogComment Class Added-------------->");
 		sessionFactoryBuiler.addAnnotatedClass(Forum.class);
 		System.out.println("<--------------Forum Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(ForumComment.class);
+		System.out.println("<--------------ForumComment Class Added-------------->");
+		
 		sessionFactoryBuiler.addAnnotatedClass(Job.class);
 		System.out.println("<--------------Job Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(ApplyJob.class);
+		System.out.println("<--------------ApplyJob Class Added-------------->");
+	
 		sessionFactoryBuiler.addAnnotatedClass(User.class);
 		System.out.println("<--------------User Class Added-------------->");
 		SessionFactory sessionFactory = sessionFactoryBuiler.buildSessionFactory();

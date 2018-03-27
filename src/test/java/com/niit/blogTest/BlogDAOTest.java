@@ -172,12 +172,12 @@ public class BlogDAOTest {
 		System.out.println("<-----------Successfully fetched blogComment-------->");
 	}
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testDeleteBlogComment() {
-		blog = blogDao.getBlog(1);
-		assertEquals("Successfully deleted blog details from the table", true, blogDao.deleteBlog(blog));
-		System.out.println("<-----------Successfully deleted blog-------->");
+		blogComment = blogDao.getBlogComment(5);
+		assertEquals("Successfully deleted blog details from the table", true, blogDao.deleteBlogComment(blogComment));
+		System.out.println("<-----------Successfully deleted blogComment-------->");
 	}
 
 	// @Ignore

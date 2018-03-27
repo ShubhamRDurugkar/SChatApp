@@ -17,12 +17,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Component
 @Entity
 @Table
-@SequenceGenerator(name = "blogcommentidseq", sequenceName="blogComment_id_seq", allocationSize = 1)
-public class BlogComment {
-
+@SequenceGenerator(name = "forumcommentidseq", sequenceName="forumComment_id_seq", allocationSize = 1)
+public class ForumComment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blogcommentidseq")
-	@Column(name="CommentId")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "forumcommentidseq")
+	@Column(name="commentId")
 	int commmentID;
 	
 	@Column(name = "commentText")
@@ -31,8 +30,8 @@ public class BlogComment {
 	@Column(name = "username")
 	private String username;
 	
-	@Column(name = "blogId")
-	private int blogId;
+	@Column(name = "forumId")
+	private int forumId;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
 	@Column(name="commentDate")
@@ -62,12 +61,12 @@ public class BlogComment {
 		this.username = username;
 	}
 
-	public int getBlogId() {
-		return blogId;
+	public int getForumId() {
+		return forumId;
 	}
 
-	public void setBlogId(int blogId) {
-		this.blogId = blogId;
+	public void setForumId(int forumId) {
+		this.forumId = forumId;
 	}
 
 	public Date getCommentDate() {
@@ -77,5 +76,7 @@ public class BlogComment {
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
 	}
+
 	
+
 }
