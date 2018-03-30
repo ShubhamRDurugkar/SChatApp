@@ -11,27 +11,26 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.dao.UserDAO;
-import com.niit.model.User;
+import com.niit.dao.UserDetailDAO;
+import com.niit.model.UserDetail;
 
 @Service
 @Repository("userDAO")
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDetailDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-
-	   @Autowired
-		public UserDAOImpl(SessionFactory sf) {
-			super();
-			this.sessionFactory = sf;
-		}
+	@Autowired
+	public UserDAOImpl(SessionFactory sf) {
+		super();
+		this.sessionFactory = sf;
+	}
 
 	@Transactional
-	public boolean addUser(User user) {
+	public boolean registerUser(UserDetail userDetail) {
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(user);
+			sessionFactory.getCurrentSession().saveOrUpdate(userDetail);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -39,7 +38,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Transactional
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(UserDetail user) {
 		try {
 			sessionFactory.getCurrentSession().delete(user);
 			return true;
@@ -49,7 +48,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Transactional
-	public boolean updateUser(User user) {
+	public boolean updateUser(UserDetail user) {
 		try {
 			sessionFactory.getCurrentSession().update(user);
 			return true;
@@ -58,28 +57,61 @@ public class UserDAOImpl implements UserDAO{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
-	public User getUser(int userId) {
+	public List<UserDetail> listUsers() {
 		try {
 			Session session = sessionFactory.openSession();
-			User user = session.get(User.class, userId);
-			return user;
+			session.beginTransaction();
+			List<UserDetail> userList = new ArrayList<UserDetail>();
+			Query query = session.createQuery("FROM User");
+			userList = query.list();
+			return userList;
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	
-	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<User> listUser(String username) {
+	@Override
+	public boolean checkLogin(UserDetail userDetail) {
+		try{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from UserDetail where loginname=:loginname and password=:password");
+			query.setParameter("loginname",userDetail.getLoginname());
+			query.setParameter("password",userDetail.getPassword());
+			UserDetail userDetails=(UserDetail)query.list().get(0);
+			session.close();
+			if(userDetails==null){
+				return false;
+			}else
+			{
+			 return true;
+			}
+		}catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Transactional
+	@Override
+	public boolean updateOnlineStatus(String status, UserDetail userDetail) {
+		try {
+			userDetail.setIsOnline(status);
+			sessionFactory.getCurrentSession().update(userDetail);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Transactional
+	@Override
+	public UserDetail getUser(String loginname) {
 		try {
 			Session session = sessionFactory.openSession();
-			session.beginTransaction();
-			List<User> userList = new ArrayList<User>();
-			Query query = session.createQuery("FROM User where username=:username").setString("username",username);
-			userList = query.list();
-			return userList;
+			UserDetail userDetails = session.get(UserDetail.class, loginname);
+			return userDetails;
 		} catch (Exception e) {
 			return null;
 		}

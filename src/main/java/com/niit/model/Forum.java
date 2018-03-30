@@ -36,8 +36,8 @@ public class Forum {
 	@Column(name = "createdDate")
 	private Date createdDate;
 
-	@Column(name = "username")
-	private String username;
+	@Column(name = "loginname")
+	private String loginname;
 
 	@Column(name = "status")
 	private String status;
@@ -82,12 +82,13 @@ public class Forum {
 		this.createdDate = createdDate;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getLoginname() {
+		return loginname;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
 
+	
 }

@@ -6,13 +6,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.dao.UserDAO;
-import com.niit.model.User;
+import com.niit.dao.UserDetailDAO;
+import com.niit.model.UserDetail;
 
 public class DeleteUserTest {
 
-	private static UserDAO userDao;
-	private User user;
+	private static UserDetailDAO userDao;
+	private UserDetail user;
 
 	@BeforeClass
 	public static void initialize() {
@@ -20,12 +20,12 @@ public class DeleteUserTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit");
 		context.refresh();
-		userDao = (UserDAO) context.getBean("userDAO");
+		userDao = (UserDetailDAO) context.getBean("userDAO");
 	}
 
 	@Test
 	public void testDeleteUser() {
-		user = userDao.getUser(3);
+		user = userDao.getUser("Shubham");
 		assertEquals("Successfully deleted user details from the table", true, userDao.deleteUser(user));
 		System.out.println("<-----------Successfully deleted user-------->");
 	}

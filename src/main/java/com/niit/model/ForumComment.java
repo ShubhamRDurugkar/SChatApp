@@ -27,8 +27,8 @@ public class ForumComment {
 	@Column(name = "commentText")
 	private String commentText;
 	
-	@Column(name = "username")
-	private String username;
+	@Column(name = "loginname")
+	private String loginname;
 	
 	@Column(name = "forumId")
 	private int forumId;
@@ -53,12 +53,12 @@ public class ForumComment {
 		this.commentText = commentText;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getLoginname() {
+		return loginname;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
 	}
 
 	public int getForumId() {

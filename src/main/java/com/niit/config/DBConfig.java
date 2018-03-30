@@ -23,7 +23,7 @@ import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
 import com.niit.model.Job;
-import com.niit.model.User;
+import com.niit.model.UserDetail;
 
 @Configuration
 @ComponentScan("com.niit")
@@ -65,8 +65,8 @@ public class DBConfig {
 		sessionFactoryBuiler.addAnnotatedClass(ApplyJob.class);
 		System.out.println("<--------------ApplyJob Class Added-------------->");
 	
-		sessionFactoryBuiler.addAnnotatedClass(User.class);
-		System.out.println("<--------------User Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(UserDetail.class);
+		System.out.println("<--------------UserDetails Class Added-------------->");
 		SessionFactory sessionFactory = sessionFactoryBuiler.buildSessionFactory();
 		System.out.println("<---------Session object created--------->");
 		return sessionFactory;

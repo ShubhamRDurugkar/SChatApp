@@ -6,11 +6,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.dao.UserDAO;
+import com.niit.dao.UserDetailDAO;
 
 public class GetAllUsersTest {
 
-	private static UserDAO userDao;
+	private static UserDetailDAO userDao;
 
 	@BeforeClass
 	public static void initialize() {
@@ -18,13 +18,13 @@ public class GetAllUsersTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit");
 		context.refresh();
-		userDao = (UserDAO) context.getBean("userDAO");
+		userDao = (UserDetailDAO) context.getBean("userDAO");
 	}
 
 	@Test
 	public void testDeleteUser() {
 		assertEquals("Successfully fetched all users from the table", 1,
-				userDao.listUser("ShubhamRDurugkar").size());
+				userDao.listUsers().size());
 
 		System.out.println("<-----------Successfully retrieved list of user-------->");
 	}

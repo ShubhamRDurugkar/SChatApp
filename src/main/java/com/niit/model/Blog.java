@@ -35,8 +35,8 @@ public class Blog {
 	@Column(name = "createDate")
 	private Date createDate;
 	
-	@Column(name = "username")
-	private String username;
+	@Column(name = "loginname")
+	private String loginname;
 	
 	@Column(name = "status")
 	private String status;
@@ -80,17 +80,18 @@ public class Blog {
 		return createDate;
 	}
 
+	public String getLoginname() {
+		return loginname;
+	}
+
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
+	}
+
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 	public String getStatus() {
 		return status;

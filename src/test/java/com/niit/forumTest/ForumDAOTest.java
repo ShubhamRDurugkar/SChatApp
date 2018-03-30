@@ -36,7 +36,7 @@ public class ForumDAOTest {
 
 		forum = new Forum();
 		forum.setForumName("Shubham");
-		forum.setUsername("shubhamRD");
+		forum.setLoginname("shubhamRD");
 		forum.setForumContent("Food Forum");
 		forum.setCreatedDate(new Date());
 		forum.setStatus("NA");
@@ -54,7 +54,7 @@ public class ForumDAOTest {
 		forum.setForumContent("This is best place to visit..");
 		forum.setStatus("AP");
 		forum.setCreatedDate(new Date());
-		forum.setUsername("ShubhamRDurugkar");
+		forum.setLoginname("ShubhamRDurugkar");
 		assertEquals("Successfully updated forum into the table", true, forumDao.updateForum(forum));
 		System.out.println("<-----------Successfully updated forum-------->");
 	}
@@ -68,7 +68,7 @@ public class ForumDAOTest {
 		System.out.println("forumID :" + forum.getForumId());
 		System.out.println("forumName :" + forum.getForumName());
 		System.out.println("forumContent :" + forum.getForumContent());
-		System.out.println("Username :" + forum.getUsername());
+		System.out.println("Username :" + forum.getLoginname());
 		System.out.println("Status :" + forum.getStatus());
 		System.out.println("Created Date :" + forum.getCreatedDate());
 		System.out.println("<-----------Successfully fetched forum-------->");
@@ -84,7 +84,7 @@ public class ForumDAOTest {
 			System.out.println("forumID :" + forum.getForumId());
 			System.out.println("forumName :" + forum.getForumName());
 			System.out.println("forumContent :" + forum.getForumContent());
-			System.out.println("Username :" + forum.getUsername());
+			System.out.println("Username :" + forum.getLoginname());
 			System.out.println("Status :" + forum.getStatus());
 			System.out.println("Created Date :" + forum.getCreatedDate());
 		}
@@ -130,10 +130,10 @@ public class ForumDAOTest {
 	public void testAddForumComment() {
 		forumComment = new ForumComment();
 		forum = forumDao.getForum(1);
-		String username = forum.getUsername();
+		String username = forum.getLoginname();
 		int forumId = forum.getForumId();
 		forumComment.setForumId(forumId);
-		forumComment.setUsername(username);
+		forumComment.setLoginname(username);
 		forumComment.setCommentDate(new Date());
 		forumComment.setCommentText("Destiny forum");
 		assertEquals("Successfully added the forumComment...", true, forumDao.addForumComment(forumComment));
@@ -145,10 +145,10 @@ public class ForumDAOTest {
 	public void testGetForumCommment() {
 		forumComment = forumDao.getForumComment(1);
 		assertEquals("Successfully fetched a forumComments from the table", "ShubhamRDurugkar",
-				forumComment.getUsername());
+				forumComment.getLoginname());
 		System.out.println("<========ForumComment========>");
 		System.out.println("forumID :" + forumComment.getForumId());
-		System.out.println("Username :" + forumComment.getUsername());
+		System.out.println("Username :" + forumComment.getLoginname());
 		System.out.println("Status :" + forumComment.getCommmentID());
 		System.out.println("Likes :" + forumComment.getCommentText());
 		System.out.println("Created Date :" + forumComment.getCommentDate());
@@ -174,7 +174,7 @@ public class ForumDAOTest {
 			System.out.println("forumID :" + forumComment.getForumId());
 			System.out.println("CommentID :" + forumComment.getCommmentID());
 			System.out.println("Comment Text :" + forumComment.getCommentText());
-			System.out.println("Username :" + forumComment.getUsername());
+			System.out.println("Username :" + forumComment.getLoginname());
 			System.out.println("Comment Date : " + forumComment.getCommentDate());
 		}
 		System.out.println("<-----------Successfully retrieved list of forumComments-------->");

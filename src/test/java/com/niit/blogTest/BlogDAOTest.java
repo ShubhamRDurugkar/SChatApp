@@ -44,7 +44,7 @@ public class BlogDAOTest {
 
 		blog = new Blog();
 		blog.setBlogName("Shubham");
-		blog.setUsername("shubhamRD");
+		blog.setLoginname("shubhamRD");
 		blog.setBlogContent("Food blog");
 		blog.setCreateDate(new Date());
 		blog.setStatus("A");
@@ -75,7 +75,7 @@ public class BlogDAOTest {
 		System.out.println("blogID :" + blog.getBlogId());
 		System.out.println("blogName :" + blog.getBlogName());
 		System.out.println("blogContent :" + blog.getBlogContent());
-		System.out.println("Username :" + blog.getUsername());
+		System.out.println("Username :" + blog.getLoginname());
 		System.out.println("Status :" + blog.getStatus());
 		System.out.println("Likes :" + blog.getLikes());
 		System.out.println("Created Date :" + blog.getCreateDate());
@@ -92,7 +92,7 @@ public class BlogDAOTest {
 			System.out.println("blogID :" + blog.getBlogId());
 			System.out.println("blogName :" + blog.getBlogName());
 			System.out.println("blogContent :" + blog.getBlogContent());
-			System.out.println("Username :" + blog.getUsername());
+			System.out.println("Username :" + blog.getLoginname());
 			System.out.println("Status :" + blog.getStatus());
 			System.out.println("Likes :" + blog.getLikes());
 			System.out.println("Created Date :" + blog.getCreateDate());
@@ -148,7 +148,7 @@ public class BlogDAOTest {
 	public void testAddBlogComment() {
 		blogComment = new BlogComment();
 		blog = blogDao.getBlog(1);
-		String username = blog.getUsername();
+		String username = blog.getLoginname();
 		int blogId = blog.getBlogId();
 		blogComment.setBlogId(blogId);
 		blogComment.setUsername(username);

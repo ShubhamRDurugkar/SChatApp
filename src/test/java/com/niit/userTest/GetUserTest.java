@@ -6,13 +6,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.dao.UserDAO;
-import com.niit.model.User;
+import com.niit.dao.UserDetailDAO;
+import com.niit.model.UserDetail;
 
 public class GetUserTest {
 
-	private static UserDAO userDao;
-	private User user;
+	private static UserDetailDAO userDao;
+	private UserDetail user;
 
 	@BeforeClass
 	public static void initialize() {
@@ -20,12 +20,12 @@ public class GetUserTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit");
 		context.refresh();
-		userDao = (UserDAO) context.getBean("userDAO");
+		userDao = (UserDetailDAO) context.getBean("userDAO");
 	}
 
 	@Test
 	public void testGetUser() {
-		user = userDao.getUser(3);
+		user = userDao.getUser("Shubham");
 		assertEquals("Successfully fetched a user details from the table", "ShubhamRDurugkar", user.getUsername());
 		System.out.println("<-----------Successfully fetched user-------->");
 	}
