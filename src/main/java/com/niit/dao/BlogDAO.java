@@ -13,7 +13,7 @@ public interface BlogDAO {
 	public Blog getBlog(int blogId);
 	public boolean approveBlog(Blog blog);
 	public boolean rejectBlog(Blog blog);
-	public List<Blog> listBlog(String username);
+	public List<Blog> listBlog();
 	public boolean incrementLike(Blog blog);
 	
 	public boolean addBlogComment(BlogComment blogComment);
