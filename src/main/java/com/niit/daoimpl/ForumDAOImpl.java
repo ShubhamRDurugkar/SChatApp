@@ -71,12 +71,12 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<Forum> listForum(String username) {
+	public List<Forum> listForum() {
 		try {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			List<Forum> forumList = new ArrayList<Forum>();
-			Query query = session.createQuery("FROM Forum where username=:username").setString("username", username);
+			Query query = session.createQuery("FROM Forum ");
 			forumList = query.list();
 			return forumList;
 		} catch (Exception e) {

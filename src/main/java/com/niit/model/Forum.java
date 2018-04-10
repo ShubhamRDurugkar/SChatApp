@@ -22,7 +22,6 @@ public class Forum {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "forumidseq")
-
 	@Column(name = "forumId")
 	private int forumId;
 

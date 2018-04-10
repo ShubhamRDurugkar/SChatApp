@@ -15,15 +15,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.daoimpl.BlogDAOImpl;
 import com.niit.daoimpl.ForumDAOImpl;
+import com.niit.daoimpl.FriendDAOImpl;
 import com.niit.daoimpl.JobDAOImpl;
-import com.niit.daoimpl.ProfileUpdateDAO;
+import com.niit.daoimpl.ProfileUpdateDAOImpl;
 import com.niit.daoimpl.UserDAOImpl;
 import com.niit.model.ApplyJob;
 import com.niit.model.Blog;
 import com.niit.model.BlogComment;
 import com.niit.model.Forum;
 import com.niit.model.ForumComment;
+import com.niit.model.Friend;
 import com.niit.model.Job;
+import com.niit.model.Message;
 import com.niit.model.ProfilePicture;
 import com.niit.model.UserDetail;
 
@@ -68,6 +71,10 @@ public class DBConfig {
 		System.out.println("<--------------ApplyJob Class Added-------------->");
 		sessionFactoryBuiler.addAnnotatedClass(ProfilePicture.class);
 		System.out.println("<--------------ProfilePicture Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(Message.class);
+		System.out.println("<--------------Messagse Class Added-------------->");
+		sessionFactoryBuiler.addAnnotatedClass(Friend.class);
+		System.out.println("<--------------Friend Class Added-------------->");
 
 		sessionFactoryBuiler.addAnnotatedClass(UserDetail.class);
 		System.out.println("<--------------UserDetails Class Added-------------->");
@@ -96,9 +103,15 @@ public class DBConfig {
 	public UserDAOImpl getUserDAO(SessionFactory sf) {
 		return new UserDAOImpl(sf);
 	}
-	@Bean(name = "profileUpdateDAO")
-	public ProfileUpdateDAO getProfilePictureDAO(SessionFactory sf) {
-		return new ProfileUpdateDAO(sf);
+
+	@Bean(name = "profileUpdateDAOImpl")
+	public ProfileUpdateDAOImpl getProfilePictureDAO(SessionFactory sf) {
+		return new ProfileUpdateDAOImpl(sf);
+	}
+
+	@Bean(name = "friendDAOImpl")
+	public FriendDAOImpl getFriendDAO(SessionFactory sf) {
+		return new FriendDAOImpl(sf);
 	}
 
 	@Bean
