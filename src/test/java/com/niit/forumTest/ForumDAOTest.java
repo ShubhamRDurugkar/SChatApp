@@ -77,8 +77,8 @@ public class ForumDAOTest {
 	@Ignore
 	@Test
 	public void testListForums() {
-		List<Forum> listForums = forumDao.listForum();
-		assertTrue("Successfully fetched all forums from the table", forumDao.listForum().size() > 0);
+		List<Forum> listForums = forumDao.listForum("Shubham");
+		assertTrue("Successfully fetched all forums from the table", forumDao.listForum("Shubham").size() > 0);
 		System.out.println("<======List of Forum fetched======>");
 		for (Forum forum : listForums) {
 			System.out.println("forumID :" + forum.getForumId());

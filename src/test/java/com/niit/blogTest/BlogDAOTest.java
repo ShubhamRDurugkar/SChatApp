@@ -85,8 +85,8 @@ public class BlogDAOTest {
 	@Ignore
 	@Test
 	public void testListBlog() {
-		List<Blog> listBlogs = blogDao.listBlog();
-		assertTrue("Successfully fetched all blogs from the table", blogDao.listBlog().size() > 0);
+		List<Blog> listBlogs = blogDao.listBlog("Shubham");
+		assertTrue("Successfully fetched all blogs from the table", blogDao.listBlog("Shubham").size() > 0);
 		System.out.println("<======List of Blog fetched======>");
 		for (Blog blog : listBlogs) {
 			System.out.println("blogID :" + blog.getBlogId());
