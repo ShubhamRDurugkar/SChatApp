@@ -15,9 +15,7 @@ import org.springframework.stereotype.Component;
 public class UserDetail {
 
 	
-	/*@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userdetailidseq")
-	@Column(name = "USER_ID")
-	private int id;*/
+	
 
 	@Id
 	@Column(name = "loginname")
