@@ -11,7 +11,7 @@ public interface ForumDAO {
 	public boolean deleteForum(Forum forum);
 	public boolean updateForum(Forum forum);
 	public Forum getForum(int forumId);
-	public List<Forum> listForum(String loginname);
+	public List<Forum> listForum();
 	public boolean approveForum(Forum forum);
 	public boolean rejectForum(Forum forum);
 	

@@ -1,8 +1,10 @@
 package com.niit.daoimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +46,11 @@ public class FriendDAOImpl implements FriendDAO {
 			System.out.println("Into deleteFriendRequest");
 			Session session = sessionFactory.openSession();
 			Friend friend = (Friend) session.get(Friend.class, friendId);
-			if(friend.getStatus()=="P"){
-			sessionFactory.getCurrentSession().delete(friend);
-			session.close();
-			System.out.println("Deleted friendRequest of id : " + friendId);
-			}
-			else{
+			if (friend.getStatus() == "P") {
+				sessionFactory.getCurrentSession().delete(friend);
+				session.close();
+				System.out.println("Deleted friendRequest of id : " + friendId);
+			} else {
 				System.out.println("Friend request already accepted..!!");
 			}
 			return true;
@@ -62,10 +63,18 @@ public class FriendDAOImpl implements FriendDAO {
 	@Override
 	public List<UserDetail> showSuggestedFriend(String loginname) {
 		Session session = sessionFactory.openSession();
-		Query query = session
-				.createSQLQuery("select * from userdetail where loginname not in (select friendloginname from friend)");
-		List<UserDetail> suggestFriend = (List<UserDetail>) query.list();
-		return suggestFriend;
+		SQLQuery query = session.createSQLQuery(
+				"select loginname from userdetail where loginname not in (select friendloginname from friend where loginname='"
+						+ loginname + "')and loginname!='" + loginname + "'");
+		List<Object> suggestedFriendName = (List<Object>) query.list();
+		List<UserDetail> suggestFriendList = new ArrayList<UserDetail>();
+		int i = 0;
+		while (i < suggestedFriendName.size()) {
+			UserDetail userDetail = session.get(UserDetail.class, (String) suggestedFriendName.get(i));
+			suggestFriendList.add(userDetail);
+			i++;
+		}
+		return suggestFriendList;
 	}
 
 	@SuppressWarnings("unchecked")

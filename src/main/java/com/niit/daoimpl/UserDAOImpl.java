@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDetailDAO {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			List<UserDetail> userList = new ArrayList<UserDetail>();
-			Query query = session.createQuery("FROM User");
+			Query query = session.createQuery("FROM UserDetail");
 			userList = query.list();
 			return userList;
 		} catch (Exception e) {

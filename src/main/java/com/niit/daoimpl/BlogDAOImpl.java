@@ -91,12 +91,12 @@ public class BlogDAOImpl implements BlogDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<Blog> listBlog(String loginname) {
+	public List<Blog> listBlog() {
 		try {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
-			Query query = session.createQuery("FROM Blog where loginname=:loginname");
-			query.setParameter("loginname",loginname);
+			Query query = session.createQuery("FROM Blog ");
+			//query.setParameter("loginname",loginname);
 			List<Blog> blogList = query.list();
 			session.close();
 			return blogList;
